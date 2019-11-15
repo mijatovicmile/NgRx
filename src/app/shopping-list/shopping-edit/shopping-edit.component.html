@@ -1,0 +1,50 @@
+<div class="row">
+    <div class="col-md-12">
+        <form #ingredientForm="ngForm" (ngSubmit)="onSubmit(ingredientForm)">
+            <div class="row">
+                <div class="col-md-5 form-group">
+                    <label for="name">Name</label>
+                    <input type="text"
+                           id="name"
+                           class="form-control"
+                           name="name"
+                           #name="ngModel"
+                           ngModel
+                           required>
+                </div>
+                <div class="col-md-2 form-group">
+                    <label for="amount">Amount</label>
+                    <input type="number"
+                           id="amount"
+                           class="form-control"
+                           name="amount"
+                           min="1"
+                           #amount="ngModel"
+                           ngModel 
+                           required
+                           [pattern]="'^[1-9]+[0-9]*$'">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <button class="btn btn-success mr-1" 
+                            type="submit"
+                            [disabled]="ingredientForm.invalid">
+                            {{ editMode ? 'Update Ingredient' : 'Add Ingredient' }}
+                    </button>
+                    <button class="btn btn-danger mr-1" 
+                            type="button"
+                            *ngIf="editMode"
+                            (click)="onDelete()">
+                            Delete
+                    </button>
+                    <button class="btn btn-primary" 
+                            type="button"
+                            (click)="onClear()">
+                            Clear
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

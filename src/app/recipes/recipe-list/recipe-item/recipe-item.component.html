@@ -1,0 +1,15 @@
+<ul class="list-group">
+    <a class="list-group-item list-group-item-action d-flex justify-content-between align-items-center"
+        [routerLink]="[index]"
+        routerLinkActive="active">
+        <div class="flex-column">
+            <h5 class="mb-1">{{ recipe.name }}</h5>
+            <p class="mb-1">{{ recipe.description }}</p>
+        </div>
+        <div class="image-parent">
+            <img [src]="recipe.imagePath" 
+                 class="img-responsive" 
+                 alt="{{ recipe.name }}">
+        </div>
+    </a>
+</ul>

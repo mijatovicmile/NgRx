@@ -1,0 +1,8 @@
+textarea {
+    min-height: 142px;
+}
+
+input.ng-invalid.ng-touched,
+textarea.ng-invalid.ng-touched {
+    border: 1px solid red;
+}

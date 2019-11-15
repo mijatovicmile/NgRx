@@ -1,0 +1,41 @@
+<!-- Loading spinner -->
+<app-loading-spinner *ngIf="isLoading"></app-loading-spinner>
+
+<div class="row" *ngIf="!isLoading">
+    <div class="col-xl-5 col-lg-6 col-md-8 col-sm-11 col-xs-12 mx-auto">
+        <div class="alert alert-danger" *ngIf="error && !isLoading">{{ error }}</div>
+        <div class="shadow p-5 mt-3 bg-white rounded">
+            <form #authForm="ngForm" (ngSubmit)="onSubmit(authForm)">
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" 
+                           id="email"
+                           class="form-control"
+                           ngModel
+                           name="email"
+                           required
+                           email
+                           #name="ngModel">
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" 
+                           id="password"
+                           class="form-control"
+                           ngModel
+                           name="password"
+                           required
+                           #password="ngModel">
+                </div>
+                <button class="btn btn-primary mr-2" 
+                        type="submit"
+                        [disabled]="authForm.invalid">{{ isLoginMode ? 'Login' : 'Sign Up' }}
+                </button>
+                <span class="mr-2">|</span>
+                <span class="mr-2">{{ isLoginMode ? 'Don\'t have an account?' : 'Already have an account?' }}</span>
+                <a (click)="switchMode()"
+                   [ngStyle]="{'color': '#0000FF'}">{{ isLoginMode ? 'Sign Up' : 'Login' }}</a>
+            </form>
+        </div>
+    </div>
+</div>
