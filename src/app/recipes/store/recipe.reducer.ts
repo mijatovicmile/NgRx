@@ -1,5 +1,5 @@
 import { Recipe } from '../recipe.model';
-import * as recipeActions from './recipe.actions';
+import * as RecipeActions from './recipe.actions';
 
 export interface State {
     recipes: Recipe[]
@@ -9,9 +9,9 @@ const initialState: State = {
     recipes: []
 }
 
-export function recipeReducer(state = initialState, action: recipeActions.RecipeActions) {
+export function recipeReducer(state = initialState, action: RecipeActions.RecipeActions) {
     switch(action.type) {
-        case recipeActions.SET_RECIPES:
+        case RecipeActions.SET_RECIPES:
             return {
                 ...state,
                 /**
@@ -20,13 +20,13 @@ export function recipeReducer(state = initialState, action: recipeActions.Recipe
                  */
                 recipes: [...action.payload]
             };
-        case recipeActions.ADD_RECIPE: 
+        case RecipeActions.ADD_RECIPE: 
             return {
                 ...state,
                 // Copy all the old recipes and then add new recipe (action.payload)
                 recipes: [...state.recipes, action.payload]
             };    
-        case recipeActions.UPDATE_RECIPE: 
+        case RecipeActions.UPDATE_RECIPE: 
             // Copy of the old recipe I want to update
             const updatedRecipe = { 
                 /**
@@ -55,7 +55,7 @@ export function recipeReducer(state = initialState, action: recipeActions.Recipe
                 ...state,
                 recipes: updatedRecipes
             };    
-        case recipeActions.DELETE_RECIPE: 
+        case RecipeActions.DELETE_RECIPE: 
             return {
                 ...state,
                 recipes: state.recipes.filter((recipe, index) => {

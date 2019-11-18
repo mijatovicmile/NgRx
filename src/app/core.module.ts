@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 
-import { RecipeService } from './recipes/recipe.service';
 import { RecipesResolverService } from './recipes/recipes-resolver.service';
 import { AuthService } from './auth/auth.service';
 import { AuthInterceptorService } from './auth/auth-interceptor.service';
@@ -10,7 +9,6 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
 @NgModule({
     providers: [
-        RecipeService,
         RecipesResolverService,
         AuthService,
         AuthGuard,
