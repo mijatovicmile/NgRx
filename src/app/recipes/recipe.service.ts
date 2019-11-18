@@ -1,9 +1,11 @@
 import { Injectable } from '@angular/core';
+import { Store } from '@ngrx/store';
 
 import { Recipe } from './recipe.model';
 import { Ingredient } from '../shared/ingredient.model';
 
-import { ShoppingListService } from '../shopping-list/shopping-list.service';
+import * as ShoppingListActions from '../shopping-list/store/shopping-list.actions';
+import * as fromApp from '../store/app.reducer';
 
 import { Subject } from 'rxjs';
 
@@ -12,38 +14,9 @@ export class RecipeService {
 
     recipeChanged = new Subject<Recipe[]>();
 
-    constructor(private shoppingListService: ShoppingListService) {}
+    constructor(private store: Store<fromApp.AppState>) { }
 
-    // Array of Recipes
-    // private recipes: Recipe[] = [
-    //     new Recipe('A Test Recipe 1', 
-    //             'A Test Recipe Description 1', 
-    //             'https://cdn.pixabay.com/photo/2016/06/15/19/09/food-1459693_960_720.jpg',
-    //             [
-    //                 new Ingredient('Ingredient 1', 1),
-    //                 new Ingredient('Ingredient 2', 2),
-    //                 new Ingredient('Ingredient 3', 2)
-    //             ]),
-    //     new Recipe('A Test Recipe 2', 
-    //             'A Test Recipe Description 2', 
-    //             'https://cdn.pixabay.com/photo/2016/06/15/19/09/food-1459693_960_720.jpg',
-    //             [
-    //                 new Ingredient('Ingredient 7', 1),
-    //                 new Ingredient('Ingredient 8', 2),
-    //                 new Ingredient('Ingredient 9', 2)
-    //             ]),
-    //     new Recipe('A Test Recipe 3', 
-    //             'A Test Recipe Description 3', 
-    //             'https://cdn.pixabay.com/photo/2016/06/15/19/09/food-1459693_960_720.jpg',
-    //             [
-    //                 new Ingredient('Ingredient 10', 1),
-    //                 new Ingredient('Ingredient 11', 2),
-    //                 new Ingredient('Ingredient 12', 2)
-    //             ]
-    //     )
-    // ];
-
-    private recipes: Recipe[] = []; 
+    private recipes: Recipe[] = [];
 
     // Set Recipes
     setRecipes(recipes: Recipe[]) {
@@ -64,7 +37,8 @@ export class RecipeService {
 
     // Add Ingredients to Shopping List
     addIngredientsToShoppingList(ingredients: Ingredient[]) {
-        this.shoppingListService.addIngredients(ingredients);
+        // this.shoppingListService.addIngredients(ingredients);
+        this.store.dispatch(new ShoppingListActions.AddIngredients(ingredients));
     }
 
     // Add a new recipe

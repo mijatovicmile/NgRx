@@ -8,7 +8,7 @@ import { RecipeDetailComponent } from './recipe-detail/recipe-detail.component';
 
 import { RecipesResolverService } from './recipes-resolver.service';
 
-import { AuthGuard } from '../auth/auth-guard.service';
+import { AuthGuard } from '../auth/auth.guard';
 
 const routes: Routes = [
     {
